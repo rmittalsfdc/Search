@@ -26,6 +26,14 @@ if(isset($_POST['search']) && !empty($_POST['search'])){
 </form>
 
 <table border="1" style="width:100%">
+<tr>
+   <th>First Name</th>
+   <th>Last Name</th> 
+   <th>Age</th>
+	<th>Address</th>
+ </tr>
+
+ 
 <?php 
 if($dbdrv->NumRows() > 0){
 		$output = "";
