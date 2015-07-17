@@ -1,5 +1,5 @@
-<?php
-include_once('postgredb.php');
+<?php include_once('postgredb.php');
+echo "Hello";
 $output = '<div>No Result found.</div>';
 if(isset($_POST['search'])){
 	$searchq = $_POST['search'];
