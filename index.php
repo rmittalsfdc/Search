@@ -16,17 +16,7 @@ if(isset($_POST['search']) && !empty($_POST['search'])){
 	if (!$dbdrv->ExecQuery($sql)){
 	    die ($dbdrv->Error());
 	}
-	if($dbdrv->NumRows() > 0){
-		$output = "";
-		for ($row=0; $result=$dbdrv->FetchResult($row, PGSQL_BOTH); $row++)
-		{
-			$output .= " ".$result["first_name"]. " ".$result["last_name"]." ".$result["age"]. " ".$result["address"]."<br/>";
-		}
-		
-	}
 	
-	$dbdrv->Commit();// Commit transaction
-	$dbdrv->DBClose();// Close connection with database
 }
 ?>
 
@@ -34,4 +24,28 @@ if(isset($_POST['search']) && !empty($_POST['search'])){
 	<input type="text" name="search" placeholder="Search for members" />
 	<input type="submit" value="Search" /> 
 </form>
-<?php echo $output; ?>
+
+<table border="1" style="width:100%">
+<?php 
+if($dbdrv->NumRows() > 0){
+		$output = "";
+		for ($row=0; $result=$dbdrv->FetchResult($row, PGSQL_BOTH); $row++)
+		{ 
+?>
+<tr>
+   <td><?php echo $result["first_name"]?></td>
+   <td><?php echo $result["last_name"]?></td> 
+   <td><?php echo $result["age"]?></td>
+	<td><?php echo $result["address"]?></td>
+ </tr>
+		
+		<?php
+	}
+		
+	}
+	
+	$dbdrv->Commit();// Commit transaction
+	$dbdrv->DBClose();// Close connection with database
+?> 
+ 
+</table>
