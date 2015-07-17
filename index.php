@@ -1,6 +1,6 @@
 <?php include('postgredb.php');
 $output = "<div>No Result found.</div>";
-if(isset($_POST) && !empty($_POST['search'])){
+if(isset($_POST['search']) && !empty($_POST['search'])){
 	$searchq = trim($_POST['search']);
 	$searchq = preg_replace("#[^0-9a-z]#i","",$searchq);
 	$dbname = "df8k1m58fmo0qg";
