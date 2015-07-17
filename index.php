@@ -1,11 +1,43 @@
 <?php
+include_once('postgredb.php');
+$output = '<div>No Result found.</div>';
+if(isset($_POST['search'])){
+	$searchq = $_POST['search'];
+	//$searchq = preg_replace("#[^0-9a-z]#i","",$searchq);
+	
+	$dbname = "df8k1m58fmo0qg";
+	$host = "ec2-54-83-36-176.compute-1.amazonaws.com";
+	$port = 5432;
+	$user = "fcjoasuytuksub";
+	$password = "w4xmCijZpUq1EEmpY00RiFyjeH";
+	$persistent = 0;
 
-$conn_string = "host=ec2-54-83-36-176.compute-1.amazonaws.com port=5432 dbname=df8k1m58fmo0qg user=fcjoasuytuksub password=w4xmCijZpUq1EEmpY00RiFyjeH";
-    $dbconn4 = pg_connect($conn_string);
+	$dbdrv=new PostgreDB ($dbname, $host, $port, $user, $password, $persistent);
+	/* construct connection to database $dbname, with URL: $host, username is $user, password is $pass. If $persistent!=0 then function pg_pconnect is used otherwise pg_connect. */
+	$dbdrv->Begin();// Begin transaction block 
+	echo $sql="SELECT * FROM Company Where First_Name LIKE '%$searchq%' OR Last_Name LIKE '%$searchq%'";
+	if (!$dbdrv->ExecQuery($sql)) // Execute query or die if error is occured
+	    die ($dbdrv->Error());
+	for ($row=0; $result=$dbdrv->FetchResult($row, PGSQL_BOTH); $row++)
+	{
+	    $fname = $row['first_name'];
+		$lname = $row['last_name'];
+		$age = $row['age'];
+		$address = $row['address'];
+		$id = $row['id'];
+		
+		$output .= '<div>'.$id.' '.$fname.' '.$lname.' '.$age.' '.$address.'</div>';
+	}
+	$dbdrv->Commit();// Commit transaction
+	$dbdrv->DBClose();// Close connection with database
+}
+/*
+$conn_string = "host= port= dbname= user= password=";
+$dbconn4 = pg_connect($conn_string);
 	if(!$dbconn4){
       echo "Error : Unable to open database\n";
 	  exit();
-
+*/
 /*$servername = "ec2-54-83-36-176.compute-1.amazonaws.com";
 $username = "fcjoasuytuksub";
 $password = "w4xmCijZpUq1EEmpY00RiFyjeH";
@@ -17,8 +49,8 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } */
+/*
 $output ='';
-//collect
 if(isset($_POST['search'])){
 	$searchq = $_POST['search'];
 	$searchq = preg_replace("#[^0-9a-z]#i","",$searchq);
@@ -40,7 +72,7 @@ if(isset($_POST['search'])){
 		}
 	}
 	echo $output;
-}
+}*/
 ?>
 
 <form action="index.php" method="post">
