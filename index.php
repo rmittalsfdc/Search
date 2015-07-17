@@ -2,7 +2,7 @@
 $output = "<div>No Result found.</div>";
 if(isset($_POST) && !empty($_POST['search'])){
 	$searchq = trim($_POST['search']);
-	
+	$searchq = preg_replace("#[^0-9a-z]#i","",$searchq);
 	$dbname = "df8k1m58fmo0qg";
 	$host = "ec2-54-83-36-176.compute-1.amazonaws.com";
 	$port = 5432;
