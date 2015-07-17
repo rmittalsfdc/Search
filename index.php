@@ -48,4 +48,4 @@ if(isset($_POST['search'])){
 	<input type="submit" value="Search" /> 
 </form>
 
-<h3><?php print("$output");?><h3>
+<h3><?php print("$output");?></h3>
