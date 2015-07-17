@@ -12,7 +12,7 @@ if(isset($_POST['search']) && !empty($_POST['search'])){
 
 	$dbdrv=new PostgreDB ($dbname, $host, $port, $user, $password, $persistent);
 	$dbdrv->Begin();
-	$sql= "SELECT * FROM sample_table Where First_Name LIKE '$searchq%' OR First_Name LIKE '%$searchq%' OR Last_Name LIKE '%$searchq%' OR Last_Name LIKE '$searchq%'";
+	$sql= "SELECT * FROM company Where First_Name LIKE '%$searchq%' OR Last_Name LIKE '%$searchq%'";
 	if (!$dbdrv->ExecQuery($sql)){
 	    die ($dbdrv->Error());
 	}
