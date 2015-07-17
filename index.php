@@ -22,10 +22,10 @@ $output ='';
 if(isset($_POST['search'])){
 	$searchq = $_POST['search'];
 	$searchq = preg_replace("#[^0-9a-z]#i","",$searchq);
-	<?php print("before the query");?>
+	print("before the query");
 	$sql = "SELECT * FROM company Where First_Name LIKE '%$searchq%' OR Last_Name LIKE '%$searchq%'";
 	$count = $conn->query($sql);
-	<?php print("Count of records= $count");?>
+	print("Count of records= $count");
 	if($count->num_rows == 0){
 		$output = 'There were no search records';
 	}else{
@@ -39,7 +39,7 @@ if(isset($_POST['search'])){
 			$output .= '<div>'.$id.' '.$fname.' '.$lname.' '.$age.' '.$address.'</div>';
 		}
 	}
-	<?php print("$output");?>
+	print("$output");
 }
 ?>
 
