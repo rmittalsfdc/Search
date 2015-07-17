@@ -43,13 +43,7 @@ if(isset($_POST['search'])){
 }
 ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-<title> Search </title>
-</head>
 <h1>Search for FirstName/LastName<h1>
-<body>
 
 <form action="index.php" method="post">
 	<input type="text" name="search" placeholder="Search for members" />
@@ -57,6 +51,3 @@ if(isset($_POST['search'])){
 </form>
 
 <h3><?php print("$output");?><h3>
-
-</body>
-</html>
