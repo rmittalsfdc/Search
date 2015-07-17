@@ -41,10 +41,10 @@ if($dbdrv->NumRows() > 0){
 		{ 
 ?>
 <tr>
-   <td><?php echo $result["first_name"]?></td>
-   <td><?php echo $result["last_name"]?></td> 
-   <td><?php echo $result["age"]?></td>
-	<td><?php echo $result["address"]?></td>
+   <td align="center"><?php echo $result["first_name"]?></td>
+   <td align="center"><?php echo $result["last_name"]?></td> 
+   <td align="center"><?php echo $result["age"]?></td>
+	<td align="center"><?php echo $result["address"]?></td>
  </tr>
 		
 		<?php
