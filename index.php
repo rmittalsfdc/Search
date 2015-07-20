@@ -1,3 +1,5 @@
+// This file is for searching the members in the database
+
 <?php include('postgredb.php');
 $output = "<div>No Result found.</div>";
 if(isset($_POST['search']) && !empty($_POST['search'])){
