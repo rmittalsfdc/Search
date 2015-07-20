@@ -1,5 +1,15 @@
 <?php include('postgredb.php');
-$output = "<div>No Result found.</div>";
+$db = pg_connect("host=ec2-54-83-36-176.compute-1.amazonaws.com port=5432 dbname=df8k1m58fmo0qg user=fcjoasuytuksub password=w4xmCijZpUq1EEmpY00RiFyjeH");
+
+$searchfirstname = trim($_POST['ifirstname']);
+$searchlastname = trim($_POST['ilastname']);
+$searchage = trim($_POST['iage']);
+$searchaddress = trim($_POST['iaddress']);
+
+$sql= "INSERT INTO company (First_Name,Last_Name,Age,Address) 
+			VALUES ('$searchfirstname','$searchlastname','$searchage','$searchaddress')";
+			
+/*$output = "<div>No Result found.</div>";
 if((isset($_POST['ifirstname']) && !empty($_POST['ifirstname'])) || (isset($_POST['ilastname']) && !empty($_POST['ilastname'])) || (isset($_POST['iage']) && !empty($_POST['iage'])) || (isset($_POST['iaddress']) && !empty($_POST['iaddress']))){
 $searchfirstname = trim($_POST['ifirstname']);
 $searchlastname = trim($_POST['ilastname']);
@@ -28,7 +38,10 @@ echo "last name: $searchlastname";
 		echo "error: $dbdrv->Error()";
 	}
 	
-}
+}*/
+
+$result = pg_query($sql);
+
 ?>
 <form action="index1.php" method="post">
 	<p><label for="ifirstname">First Name:</label> 
