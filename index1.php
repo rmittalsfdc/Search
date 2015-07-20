@@ -23,7 +23,7 @@ echo "last name: $searchlastname";
 			VALUES ('$searchfirstname','$searchlastname',$searchage,'$searchaddress')";
 	echo "insert query: $sql";
 	
-	if (!$dbdrv->ExecQuery($sql)){
+	if (!$dbdrv->EXECUTE ($sql)){
 	    //die ($dbdrv->Error());
 		echo "error: $dbdrv->Error()";
 	}
