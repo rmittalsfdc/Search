@@ -1,4 +1,4 @@
-// This file is for inserting the new members into the database
+// This file is for inserting the new members into the database.
 
 <?php include('postgredb.php');
 $db = pg_connect("host=ec2-54-83-36-176.compute-1.amazonaws.com port=5432 dbname=df8k1m58fmo0qg user=fcjoasuytuksub password=w4xmCijZpUq1EEmpY00RiFyjeH");

@@ -1,4 +1,4 @@
-// This file is for searching the members in the database
+// This file is for searching the members in the database.
 
 <?php include('postgredb.php');
 $output = "<div>No Result found.</div>";
