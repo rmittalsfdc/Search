@@ -20,7 +20,7 @@ echo "last name: $searchlastname";
 	$dbdrv=new PostgreDB ($dbname, $host, $port, $user, $password, $persistent);
 	$dbdrv->Begin();
 	$sql= "INSERT INTO company (First_Name,Last_Name,Age,Address) 
-			VALUES ('$searchfirstname','$searchlastname','$searchage','$searchaddress')";
+			VALUES ('$searchfirstname','$searchlastname',$searchage,'$searchaddress')";
 	echo "insert query: $sql";
 	
 	if (!$dbdrv->ExecQuery($sql)){
