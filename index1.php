@@ -6,6 +6,10 @@ $searchlastname = trim($_POST['ilastname']);
 $searchage = trim($_POST['iage']);
 $searchaddress = trim($_POST['iaddress']);
 
+echo "first name: $searchfirstname";
+echo "last name: $searchlastname";
+
+
 	//$searchq = preg_replace("#[^0-9a-z]#i","",$searchq);
 	$dbname = "df8k1m58fmo0qg";
 	$host = "ec2-54-83-36-176.compute-1.amazonaws.com";
@@ -17,6 +21,8 @@ $searchaddress = trim($_POST['iaddress']);
 	$dbdrv->Begin();
 	$sql= "INSERT INTO company (First_Name,Last_Name,Age,Address) 
 			VALUES ('$searchfirstname','$searchlastname','$searchage','$searchaddress')";
+	echo "insert query: $sql";
+	
 	if (!$dbdrv->ExecQuery($sql)){
 	    die ($dbdrv->Error());
 	}
