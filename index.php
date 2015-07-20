@@ -19,14 +19,9 @@ if((isset($_POST['ifirstname']) && !empty($_POST['ifirstname'])) || (isset($_POS
 	if (!$dbdrv->ExecQuery($sql)){
 	    die ($dbdrv->Error());
 	}
-	$query = "INSERT INTO company(first_name, last_name, age, address) VALUES('" . $searchfirstname . "', '" . $searchlastname . "', '" . $searchage . "', '" . $searchaddess . "')";
-	if (!$dbdrv->ExecQuery($query)){
-		die ($dbdrv->Error());
-	}
-	else{
-		echo "Record Inserted";
-	}
+	
 }
+
 ?>
 
 <form action="index.php" method="post">
@@ -55,6 +50,10 @@ if((isset($_POST['ifirstname']) && !empty($_POST['ifirstname'])) || (isset($_POS
 
  
 <?php 
+if($dbdrv->NumRows() = 0){
+$query = "INSERT INTO company(first_name, last_name, age, address) VALUES('" . $searchfirstname . "', '" . $searchlastname . "', '" . $searchage . "', '" . $searchaddess . "')";
+	echo "Record Inserted";
+}
 if($dbdrv->NumRows() > 0){
 		$output = "";
 		for ($row=0; $result=$dbdrv->FetchResult($row, PGSQL_BOTH); $row++)
