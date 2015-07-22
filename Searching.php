@@ -1,19 +1,20 @@
-<?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "companies";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
+<?php include('postgredb.php');
+	$dbname = "df8k1m58fmo0qg";
+	$host = "ec2-54-83-36-176.compute-1.amazonaws.com";
+	$port = 5432;
+	$user = "fcjoasuytuksub";
+	$password = "w4xmCijZpUq1EEmpY00RiFyjeH";
+	$persistent = 0;
+	$conn=new PostgreDB ($dbname, $host, $port, $user, $password, $persistent);
+	$conn->Begin();
 
 	if(isset($_POST['name']))
 	{
 		$name = $_POST['name'];
 		//$search_query = mysqli_query($conn,"SELECT * FROM company WHERE Name = '$name'");
 		$search_query = "SELECT * FROM company WHERE Name = '$name'";
-		$result = $conn->query($search_query);
+		$result = pg_query($conn,$search_query);
 		if($result)
-		
 		{
 			echo "Please try again";
 		}
@@ -22,7 +23,7 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 	switch (isset($_POST['test1'])) 
 	{
 			case 'Insert':
-					$insert_query = mysqli_query($conn,"INSERT INTO company_names (Name) 
+					$insert_query = pg_query($conn,"INSERT INTO company_names (Name) 
 									VALUES ('$name')");
 					break;
 			/*case 'Delete':
@@ -36,7 +37,7 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 	}
 	
 	$sql = "SELECT * FROM company_names";
-	$result = $conn->query($sql);
+	$result = pg_query($conn,$sql);
 	//$res = mysqli_query($conn,"SELECT * FROM company_names") or die("Error: ".mysqli_error($conn));
 	
 ?>
@@ -58,7 +59,7 @@ Company Name: <input type="text" name="name">
 	
 	<?php	
 	//while($row = $result->fetch_array())
-		for ($row=0; $row = $result->fetch_array(); $row++)
+		for ($row=0; $row = pg_fetch_array($result); $row++)
 		{
 		//echo " ".$row["ID"]." " .$row["Name"]." <br />";
 	?>
@@ -72,10 +73,10 @@ Company Name: <input type="text" name="name">
 	</tr>
 		<?php
 		}
-		if(isset($_GET['ID']))
+		/*if(isset($_GET['ID']))
 					{
 					$id=mysqli_real_escape_string($_GET['ID']);
 					mysqli_query($conn,"DELETE FROM company_names where ID='$id'");
-					}
+					}*/
 		?>
 </table>

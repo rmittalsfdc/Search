@@ -1,10 +1,12 @@
-<?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "companies";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
+<?php include('postgredb.php');
+$dbname = "df8k1m58fmo0qg";
+	$host = "ec2-54-83-36-176.compute-1.amazonaws.com";
+	$port = 5432;
+	$user = "fcjoasuytuksub";
+	$password = "w4xmCijZpUq1EEmpY00RiFyjeH";
+	$persistent = 0;
+	$conn=new PostgreDB ($dbname, $host, $port, $user, $password, $persistent);
+	$conn->Begin();
 
 	
 	if(isset($_POST) && !empty($_POST['newName']))
@@ -12,7 +14,7 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 		$newName = $_POST['newName'];
 		$ID 	 = $_POST['ID'];
 		$sql  	 = "UPDATE company_names SET Name='$newName' WHERE ID='$ID'";
-		$res 	 = mysqli_query($conn,$sql) or die("Could Not Update".mysqli_error());
+		$res 	 = pg_query($conn,$sql) or die("Could Not Update".mysqli_error());
 		echo "<meta http-equiv='refresh' content='0;url=Searching.php'>";
 		exit;
 	}
@@ -21,10 +23,10 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 	{
 		$id = $_GET['ID'];
 		$query = "SELECT * FROM company_names WHERE ID='$id'";
-		$result = $conn->query($query);
+		$result = pg_query($conn,$query);
 		//$res = mysqli_query($conn,"SELECT * FROM company_names WHERE ID='$id'");
 		//$row = mysqli_fetch_array($res);
-		$row = $result->fetch_array();
+		$row = pg_fetch_array($result);
 	}
 	if(isset($_GET) && empty($_GET['ID']))
 	{
