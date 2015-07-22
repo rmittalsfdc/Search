@@ -1,13 +1,6 @@
 <?php include('postgredb.php');
-$dbname = "df8k1m58fmo0qg";
-	$host = "ec2-54-83-36-176.compute-1.amazonaws.com";
-	$port = 5432;
-	$user = "fcjoasuytuksub";
-	$password = "w4xmCijZpUq1EEmpY00RiFyjeH";
-	$persistent = 0;
-	$conn=new PostgreDB ($dbname, $host, $port, $user, $password, $persistent);
-	$conn->Begin();
 
+$conn = pg_connect("host=ec2-54-83-36-176.compute-1.amazonaws.com port=5432 dbname=df8k1m58fmo0qg user=fcjoasuytuksub password=w4xmCijZpUq1EEmpY00RiFyjeH");
 	
 	if(isset($_POST) && !empty($_POST['Name']))
 	{
