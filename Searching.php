@@ -1,9 +1,6 @@
 <?php include('postgredb.php');
 
 $conn = pg_connect("host=ec2-54-83-36-176.compute-1.amazonaws.com port=5432 dbname=df8k1m58fmo0qg user=fcjoasuytuksub password=w4xmCijZpUq1EEmpY00RiFyjeH");
-
-	$sql = "SELECT * FROM company_names";
-	$result = pg_query($sql);
 	
 	if(isset($_POST['name']))
 	{
@@ -11,31 +8,27 @@ $conn = pg_connect("host=ec2-54-83-36-176.compute-1.amazonaws.com port=5432 dbna
 		//$search_query = mysqli_query($conn,"SELECT * FROM company WHERE Name = '$name'");
 		$search_query = "SELECT * FROM company_names WHERE name = '$name'";
 		$searchresult = pg_query($search_query);
-		if($searchresult)
+		$v = pg_num_rows($searchresult);
+		if($v > 0)
 		{
 			echo "Please try again";
+		}else{
+			$insert_query = pg_query("INSERT INTO company_names (name) 
+									VALUES ('$name')");
+					
 		}
 	}
-	
+	$sql = "SELECT * FROM company_names";
+	$result = pg_query($sql);
+	/*
 	switch (isset($_POST['test1'])) 
 	{
 			case 'Insert':
 					$insert_query = pg_query("INSERT INTO company_names (name) 
 									VALUES ('$name')");
 					break;
-			/*case 'Delete':
-					if(isset($_GET['ID']))
-					{
-					$id=mysqli_real_escape_string($_GET['ID']);
-					mysqli_query($conn,"DELETE FROM company_names WHERE ID='$id'");
-					}
-					//$delete_query = mysqli_query($conn,"DELETE FROM company_names WHERE ID=$row[ID]");
-					break;*/
-	}
-	
-	
-	//$res = mysqli_query($conn,"SELECT * FROM company_names") or die("Error: ".mysqli_error($conn));
-	
+	}*/
+		
 ?>
 
 <form action="Searching.php" method="POST">
@@ -64,7 +57,7 @@ Company Name: <input type="text" name="name">
 	<tr>
 		<td align="center"><?php echo $row["id"]?></td>
 		<td align="center"><?php echo $row["name"]?></td> 
-		<td align="center"><a href="\Update.php?ID=<?php echo $row["ID"]?>">Edit / <a href="\Delete.php?ID=<?php echo $row["ID"]?>">Delete</a></a></td>
+		<td align="center"><a href="Update.php?ID=<?php echo $row["id"]?>">Edit / <a href="Delete.php?ID=<?php echo $row["id"]?>" >Delete</a></a></td>
 		<!--<td align="center"><input type="Submit" name="test1" value="Delete"></td>-->
 		<!--<td align="center"><a href="\Delete.php?ID=<?php echo $row["ID"]?>">Delete</a></td>-->
 	</tr>
