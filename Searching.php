@@ -62,8 +62,8 @@ Company Name: <input type="text" name="name">
 	?>
 	
 	<tr>
-		<td align="center"><?php echo $row["ID"]?></td>
-		<td align="center"><?php echo $row["Name"]?></td> 
+		<td align="center"><?php echo $row["id"]?></td>
+		<td align="center"><?php echo $row["name"]?></td> 
 		<td align="center"><a href="\Update.php?ID=<?php echo $row["ID"]?>">Edit / <a href="\Delete.php?ID=<?php echo $row["ID"]?>">Delete</a></a></td>
 		<!--<td align="center"><input type="Submit" name="test1" value="Delete"></td>-->
 		<!--<td align="center"><a href="\Delete.php?ID=<?php echo $row["ID"]?>">Delete</a></td>-->
