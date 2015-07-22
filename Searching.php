@@ -10,7 +10,7 @@ $conn = pg_connect("host=ec2-54-83-36-176.compute-1.amazonaws.com port=5432 dbna
 		$name = $_POST['name'];
 		//$search_query = mysqli_query($conn,"SELECT * FROM company WHERE Name = '$name'");
 		$search_query = "SELECT * FROM company WHERE Name = '$name'";
-		$result = pg_query($search_query);
+		$searchresult = pg_query($search_query);
 		if($result)
 		{
 			echo "Please try again";
@@ -56,7 +56,7 @@ Company Name: <input type="text" name="name">
 	<?php	
 	//while($row = $result->fetch_array())
 		//echo "count of companies: "
-		for ($row=0; $row = pg_fetch_row($sql); $row++)
+		while ($row=0; $row = pg_fetch_row($result); $row++)
 		{
 		//echo " ".$row["ID"]." " .$row["Name"]." <br />";
 	?>
