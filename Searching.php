@@ -2,6 +2,9 @@
 
 $conn = pg_connect("host=ec2-54-83-36-176.compute-1.amazonaws.com port=5432 dbname=df8k1m58fmo0qg user=fcjoasuytuksub password=w4xmCijZpUq1EEmpY00RiFyjeH");
 
+	$sql = "SELECT ID, Name FROM company_names";
+	$result = pg_query($sql);
+	
 	if(isset($_POST['name']))
 	{
 		$name = $_POST['name'];
@@ -30,8 +33,7 @@ $conn = pg_connect("host=ec2-54-83-36-176.compute-1.amazonaws.com port=5432 dbna
 					break;*/
 	}
 	
-	$sql = "SELECT * FROM company_names";
-	$result = pg_query($sql);
+	
 	//$res = mysqli_query($conn,"SELECT * FROM company_names") or die("Error: ".mysqli_error($conn));
 	
 ?>
@@ -53,7 +55,8 @@ Company Name: <input type="text" name="name">
 	
 	<?php	
 	//while($row = $result->fetch_array())
-		for ($row=0; $row = pg_fetch_array($result); $row++)
+		//echo "count of companies: "
+		for ($row=0; $row = pg_fetch_row($result); $row++)
 		{
 		//echo " ".$row["ID"]." " .$row["Name"]." <br />";
 	?>
