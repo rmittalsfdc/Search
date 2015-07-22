@@ -1,16 +1,24 @@
 <?php include('postgredb.php');
 
-$conn = pg_connect("host=ec2-54-83-36-176.compute-1.amazonaws.com port=5432 dbname=df8k1m58fmo0qg user=fcjoasuytuksub password=w4xmCijZpUq1EEmpY00RiFyjeH");
-
-	$sql = "SELECT ID, Name FROM company_names";
-	$result = pg_query($sql);
+//$conn = pg_connect("host=ec2-54-83-36-176.compute-1.amazonaws.com port=5432 dbname=df8k1m58fmo0qg user=fcjoasuytuksub password=w4xmCijZpUq1EEmpY00RiFyjeH");
+	$dbname = "df8k1m58fmo0qg";
+	$host = "ec2-54-83-36-176.compute-1.amazonaws.com";
+	$port = 5432;
+	$user = "fcjoasuytuksub";
+	$password = "w4xmCijZpUq1EEmpY00RiFyjeH";
+	$persistent = 0;
+	$dbdrv=new PostgreDB ($dbname, $host, $port, $user, $password, $persistent);
+	$dbdrv->Begin();
+	
+	$sql = "SELECT * FROM company_names";
+	//$result = pg_query($sql);
 	
 	if(isset($_POST['name']))
 	{
 		$name = $_POST['name'];
 		//$search_query = mysqli_query($conn,"SELECT * FROM company WHERE Name = '$name'");
 		$search_query = "SELECT * FROM company WHERE Name = '$name'";
-		$searchresult = pg_query($search_query);
+		//$searchresult = pg_query($search_query);
 		if($result)
 		{
 			echo "Please try again";
@@ -54,22 +62,28 @@ Company Name: <input type="text" name="name">
 	</tr>
 	
 	<?php	
+	if($dbdrv->NumRows() > 0)
+	{
+		
+	
 	//while($row = $result->fetch_array())
 		//echo "count of companies: "
-		while ($row=0; $row = pg_fetch_row($result); $row++)
+		for ($row=0; $result=$dbdrv->FetchResult($row, PGSQL_BOTH); $row++)
+		//for ($row=0; $row = pg_fetch_row($result); $row++)
 		{
 		//echo " ".$row["ID"]." " .$row["Name"]." <br />";
 	?>
 	
 	<tr>
-		<td align="center"><?php echo $row["ID"]?></td>
-		<td align="center"><?php echo $row["Name"]?></td> 
-		<td align="center"><a href="\Update.php?ID=<?php echo $row["ID"]?>">Edit / <a href="\Delete.php?ID=<?php echo $row["ID"]?>">Delete</a></a></td>
+		<td align="center"><?php echo $result["ID"]?></td>
+		<td align="center"><?php echo $result["Name"]?></td> 
+		<td align="center"><a href="\Update.php?ID=<?php echo $result["ID"]?>">Edit / <a href="\Delete.php?ID=<?php echo $result["ID"]?>">Delete</a></a></td>
 		<!--<td align="center"><input type="Submit" name="test1" value="Delete"></td>-->
 		<!--<td align="center"><a href="\Delete.php?ID=<?php echo $row["ID"]?>">Delete</a></td>-->
 	</tr>
 		<?php
 		}
+	}
 		/*if(isset($_GET['ID']))
 					{
 					$id=mysqli_real_escape_string($_GET['ID']);
