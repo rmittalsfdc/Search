@@ -7,7 +7,7 @@ $conn = pg_connect("host=ec2-54-83-36-176.compute-1.amazonaws.com port=5432 dbna
 		$Name = $_POST['Name'];
 		$ID 	 = $_POST['ID'];
 		$sql  	 = "DELETE FROM company_names WHERE ID='$ID'";
-		$res 	 = pg_query($conn,$sql) or die("Could Not Update");
+		$res 	 = pg_query($sql) or die("Could Not Update");
 		echo "<meta http-equiv='refresh' content='0;url=Searching.php'>";
 		exit;
 	}
@@ -16,7 +16,7 @@ $conn = pg_connect("host=ec2-54-83-36-176.compute-1.amazonaws.com port=5432 dbna
 	{
 		$id = $_GET['ID'];
 		$query = "SELECT * FROM company_names WHERE ID='$id'";
-		$result = pg_query($conn,$query);
+		$result = pg_query($query);
 		//$res = mysqli_query($conn,"SELECT * FROM company_names WHERE ID='$id'");
 		//$row = mysqli_fetch_array($res);
 		$row = pg_fetch_array($result);

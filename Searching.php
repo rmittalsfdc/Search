@@ -7,7 +7,7 @@ $conn = pg_connect("host=ec2-54-83-36-176.compute-1.amazonaws.com port=5432 dbna
 		$name = $_POST['name'];
 		//$search_query = mysqli_query($conn,"SELECT * FROM company WHERE Name = '$name'");
 		$search_query = "SELECT * FROM company WHERE Name = '$name'";
-		$result = pg_query($conn,$search_query);
+		$result = pg_query($search_query);
 		if($result)
 		{
 			echo "Please try again";
@@ -17,7 +17,7 @@ $conn = pg_connect("host=ec2-54-83-36-176.compute-1.amazonaws.com port=5432 dbna
 	switch (isset($_POST['test1'])) 
 	{
 			case 'Insert':
-					$insert_query = pg_query($conn,"INSERT INTO company_names (Name) 
+					$insert_query = pg_query("INSERT INTO company_names (Name) 
 									VALUES ('$name')");
 					break;
 			/*case 'Delete':
@@ -31,7 +31,7 @@ $conn = pg_connect("host=ec2-54-83-36-176.compute-1.amazonaws.com port=5432 dbna
 	}
 	
 	$sql = "SELECT * FROM company_names";
-	$result = pg_query($conn,$sql);
+	$result = pg_query($sql);
 	//$res = mysqli_query($conn,"SELECT * FROM company_names") or die("Error: ".mysqli_error($conn));
 	
 ?>
