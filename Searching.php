@@ -56,7 +56,7 @@ Company Name: <input type="text" name="name">
 	<?php	
 	//while($row = $result->fetch_array())
 		//echo "count of companies: "
-		for ($row=0; $row = pg_fetch_row($result); $row++)
+		for ($row=0; $row = pg_fetch_row($sql); $row++)
 		{
 		//echo " ".$row["ID"]." " .$row["Name"]." <br />";
 	?>
