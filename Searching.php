@@ -33,7 +33,7 @@ $conn = pg_connect("host=ec2-54-83-36-176.compute-1.amazonaws.com port=5432 dbna
 
 <form action="Searching.php" method="POST">
 <h3 style="color:6600FF">Company Name:</h3> <input type="text" name="name" placeholder="Enter company name">
-<input type="Submit" name="test1" value="Insert" style="background-color:#00CC33; color:#000000;">
+<input type="Submit" name="test1" value="Insert" style="background-color:#00CC33; color:#000000; font-weight:bold">
 </form>
 
 <h1 style="color:663300"> List of Companies... </h1>
@@ -57,7 +57,7 @@ $conn = pg_connect("host=ec2-54-83-36-176.compute-1.amazonaws.com port=5432 dbna
 	<tr>
 		<td align="center" ><?php echo $row["id"]?></td>
 		<td align="center"><?php echo $row["name"]?></td> 
-		<td align="center" ><a href="Update.php?ID=<?php echo $row["id"]?>"><FONT COLOR="#339900">Edit</FONT> / <a href="Delete.php?ID=<?php echo $row["id"]?>" ><FONT COLOR="#CC3333 ">Delete</FONT></a></a></td>
+		<td align="center" ><a href="Update.php?ID=<?php echo $row["id"]?>"><FONT COLOR="#339900"><b>Edit</b></FONT> / <a href="Delete.php?ID=<?php echo $row["id"]?>" ><FONT COLOR="#CC3333 "><b>Delete</b></FONT></a></a></td>
 		<!--<td align="center"><input type="Submit" name="test1" value="Delete"></td>-->
 		<!--<td align="center"><a href="\Delete.php?ID=<?php echo $row["ID"]?>">Delete</a></td>-->
 	</tr>
