@@ -11,14 +11,14 @@ $conn = pg_connect("host=ec2-54-83-36-176.compute-1.amazonaws.com port=5432 dbna
 		$v = pg_num_rows($searchresult);
 		if($v > 0)
 		{
-			echo "Please try again";
+			echo "Record already exists......";
 		}else{
 			$insert_query = pg_query("INSERT INTO company_names (name) 
 									VALUES ('$name')");
 					
 		}
 	}
-	$sql = "SELECT * FROM company_names";
+	$sql = "SELECT * FROM company_names ORDER BY id ASC";
 	$result = pg_query($sql);
 	/*
 	switch (isset($_POST['test1'])) 
