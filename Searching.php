@@ -5,8 +5,8 @@ $conn = pg_connect("host=ec2-54-83-36-176.compute-1.amazonaws.com port=5432 dbna
 	if(isset($_POST['name']))
 	{
 		$name = $_POST['name'];
-		//$search_query = mysqli_query($conn,"SELECT * FROM company WHERE Name = '$name'");
-		$search_query = "SELECT * FROM company_names WHERE name = '$name'";
+		//$search_query = mysqli_query($conn,"SELECT * FROM company WHERE LOWER(Name) = LOWER('$name')");
+		$search_query = "SELECT * FROM company_names WHERE LOWER(Name) = LOWER('$name')";
 		$searchresult = pg_query($search_query);
 		$v = pg_num_rows($searchresult);
 		if($v > 0)
